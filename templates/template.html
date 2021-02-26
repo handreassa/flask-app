@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">  
+    <head>
+        <meta charset="uft-8">
+        <title>Application</title>
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        
+      </head>
+    <body> 
+        <header>
+            <div class='container'>
+                <h1 class='logo'>LOGO</h1>
+                <strong><nav>
+                    <ul class='w3-bar w3-black'>
+                        <a href="{{ url_for('login') }}" class="w3-bar-item w3-button w3-mobile">Login</a>
+                        <a href="{{ url_for('home') }}" class="w3-bar-item w3-button w3-mobile">Home</a>
+                        <a href="{{ url_for('linkedin') }}" class="w3-bar-item w3-button w3-mobile">Linkedin</a>
+                        <a href="{{ url_for('about') }}" class="w3-bar-item w3-button w3-mobile">About</a>
+                    </ul>
+                </nav>
+            </div>
+
+            <hr>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+        </header>
+        {% block content %}
+        {% endblock %}
+    </body> 
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        {% if title %}
+        <title>{{ title }} - Microblog</title>
+        {% else %}
+        <title>Elastic tb</title>
+        {% endif %}
+    </head>
+    <body>
+    {% extends "template.html" %}
+    {% block content %}
+    <h6>Seja bem vindo <b>{{ user.username }}</b></h6>
+    
+    <!-- <h2>Listing posts</h2>
+    {% for post in posts %}
+    <div><h6>{{ post.author.username }} says: <b>{{ post.body }}</b></h6></div>
+    {% endfor %} -->
+    {% endblock %}
+</body>
+</html>
