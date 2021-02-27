@@ -2,7 +2,12 @@
 <html lang="en" dir="ltr">  
     <head>
         <meta charset="uft-8">
-        <title>Application</title>
+        {% if title %}
+        <title>{{ title }} - LOGO</title>
+        {% else %}
+        <title>LOGO</title>
+        {% endif %}
+
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         
       </head>
@@ -14,7 +19,6 @@
                     <ul class='w3-bar w3-black'>
                         <a href="{{ url_for('login') }}" class="w3-bar-item w3-button w3-mobile">Login</a>
                         <a href="{{ url_for('home') }}" class="w3-bar-item w3-button w3-mobile">Home</a>
-                        <a href="{{ url_for('linkedin') }}" class="w3-bar-item w3-button w3-mobile">Linkedin</a>
                         <a href="{{ url_for('about') }}" class="w3-bar-item w3-button w3-mobile">About</a>
                     </ul>
                 </nav>
