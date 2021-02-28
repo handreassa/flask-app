@@ -1,16 +1,6 @@
-<!DOCTYPE html> 
-<html lang="en" dir="ltr">
-<head>
-    <meta charset="utf-8">
-    <title>About Flask</title>
-</head>
-<body>
-    {% extends "template.html" %}
-    {% block content %}
-    <h1> About Flask </h1>
+{% extends "template.html" %}
+{% block app_content %}
+    <h3> About Flask </h3>
     <p>Flask is a micro web framework written in python.</p>
     <p> Applications that use Flask framework include Pinterest, Linkedin, and the community web page for Flask itself. </p>
-    {% endblock %}
-</body>
-    
-</html>
+{% endblock %}

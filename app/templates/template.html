@@ -1,41 +1,60 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">  
-    <head>
-        <meta charset="uft-8">
+{% extends 'bootstrap/base.html' %}
+{% block title %}
         {% if title %}
-        <title>{{ title }} - LOGO</title>
-        {% else %}
-        <title>LOGO</title>
+        {% if title %}{{ title }} - Teste{% else %}Welcome to Microblog{% endif %}
         {% endif %}
+        {% endblock %}
 
-        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-        
-      </head>
-    <body> 
-        <header>
-            <div class='container'>
-                <h1 class='logo'>LOGO</h1>
-                <strong><nav>
-                    <ul class='w3-bar w3-black'>
-                        <a href="{{ url_for('login') }}" class="w3-bar-item w3-button w3-mobile">Login</a>
-                        <a href="{{ url_for('home') }}" class="w3-bar-item w3-button w3-mobile">Home</a>
-                        <a href="{{ url_for('about') }}" class="w3-bar-item w3-button w3-mobile">About</a>
+
+        {% block navbar %}
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="{{ url_for('home') }}">LOGO_NAME</a>
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li> <a href="{{ url_for('home') }}">Home</a></li>
+                         <li> <a href="{{ url_for('about') }}">About</a></li>
                     </ul>
-                </nav>
+                    {% if g.search_form %}
+                    <form class="navbar-form navbar-left" method="get" action="{{ url_for('main.search') }}">
+                        <div class="form-group">
+                            {{ g.search_form.q(size=20, class='form-control', placeholder=g.search_form.q.label.text) }}
+                        </div>
+                    </form>
+                    {% endif %}
+                    <ul class="nav navbar-nav navbar-right">
+                                <!-- Current user is anonymous is going to return true only if the user is not logged in -->
+                            {% if current_user.is_anonymous %} 
+                               <li><a href="{{ url_for('login') }}">Login </a></li>
+                            {% else %}
+                                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                            {% endif %}
+                    </ul>
+                </div>
             </div>
+        </nav>
+    {% endblock %}
 
-            <hr>
+{% block content %}
+    <div class='container'>
         {% with messages = get_flashed_messages() %}
         {% if messages %}
-        <ul>
             {% for message in messages %}
-            <li>{{ message }}</li>
+            <div class="alert alert-info" role="alert">{{ message }}</div>
             {% endfor %}
-        </ul>
         {% endif %}
         {% endwith %}
-        </header>
-        {% block content %}
-        {% endblock %}
-    </body> 
-</html>
+
+ <!-- Application needs  to be provided in the app_content block -->
+        {% block app_content %}{% endblock %}
+
+    </div>
+{% endblock %}
