@@ -1,9 +1,6 @@
 {% extends "template.html" %}
     {% block app_content %}
-    <p>Seja bem vindo <b>{{ current_user.username }}</b></p>
-    {% for p in posts %}
-        <div><p> {{ post.author.username }} says: <b> {{ post.body }}</b></p></div>
-    {% endfor %}
+    <h3>Home</h3>
     <!-- <h2>Listing posts</h2>
     {% for post in posts %}
     <div><h6>{{ post.author.username }} says: <b>{{ post.body }}</b></h6></div>

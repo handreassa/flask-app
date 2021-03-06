@@ -12,7 +12,7 @@ from werkzeug.urls import url_parse
 @app.route('/home')
 @login_required
 def home():
-    # posts = current_user.posts.all()
+    flash("Seja bem vindo, "+ current_user.username + "!")
     return render_template('home.html', title='Home page')
 
 @app.route('/about')
